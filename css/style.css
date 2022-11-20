@@ -41,6 +41,12 @@ nav a.actif {
     color : #c25e4f  ; /* marron Flandre */
 }
 
+/* Règles du parent du menu de navigation : rendu sticky pour que le menu le soit aussi */
+#div_menu_nav {
+    position : sticky ;
+    top : 0px ;
+}
+
 /* Règles de l'élément nav principal */
 nav.premier_niveau {
     margin : 0px ; padding : 0px ;
@@ -133,36 +139,49 @@ li.troisieme_niveau:hover > ul > li {
     padding : 0.5em 0.5em ;
 }
 
+
+/* Règles non prises en compte */
 /* Couleur de fond des lignes impaires */
 #tableau tr:nth-child(odd) {
     background-color : #c06a39 ;
 }
-
 /* Couleur de fond des lignes paires */
 #tableau tr:nth-child(even) {
     background-color : #e38C3c ;
 }
-
 /* Couleur de fond de la première ligne */
 #tableau tr:first-child {
     background-color : #84503c ;
 }
-
 /* Couleur de fond d'une ligne survolée */
 #tableau tr:hover {
     background-color : #84503c ;
 }
+/* Fin des règles non prises en compte */
 
 /* Taille des images */
 #tableau img {
     width : 300px ;
 }
 
+/* Boutons */
+#tableau button {
+    padding : 0.2em 1em ;
+    background-color : #c25e4f ;
+    border-radius : 5px ;
+    border-color : #c25e4f ;
+}
+
+/* Liens */
+#tableau a {
+    text-decoration : underline ;
+    color : black ;
+}
 
 /******** Règles de style relatives aux enregistrements audio et video ********/
 
 /* Règles du div conteneur des enregistrements */
-#conteneur_enreg {
+.conteneur_enreg {
     display : flex ; flex-direction : column ; align-items : center ;
 }
 
@@ -179,11 +198,15 @@ figcaption {
 
 /******************* Règles de style relatives au formulaire ******************/
 
-/* Règles générales du formulaire */
-#formulaire {
-    width : 360px ;
+/**** Règles communes ****/
+
+/* Formulaire */
+.formulaire {
+    display : flex ;
+    flex-direction : column ;
+    justify-content : flex-start ;
+    align-items : stretch ;
     margin : 10px auto 20px auto ;
-    display : flex ; flex-direction : column ; justify-content : flex-start ; align-items : stretch ;
 }
 
 /* Règles des div encadrant un label et son champ */
@@ -209,12 +232,29 @@ figcaption {
     width : 100% ;
 }
 
-/* Règles du bouton de soumission du formulaire */
-.elt-form > #bouton {
+/* Règles du bouton de soumission */
+.elt-form > .bouton_form {
     height : 2.3em ;
     margin-top : 10px ;
     background-color : #c25e4f ;
     border-radius : 5px ;
+}
+
+/**** Règles spécifiques ****/
+
+/* Titre au-dessus du formulaire des animaux */
+#titre_form {
+    text-align : center ;
+}
+
+/* Formulaire d'ajout d'animaux */
+#form_ajout_anim {
+    width : 360px ;
+}
+
+/* Formulaire de contact */
+#form_contact {
+    width : 360px ;
 }
 
 
