@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="parc zoologique, Grenoble, visites, visites guidées">
+        <title> Parc zoologique de Grenoble </title>
+    </head>
+
+    <body>
+        <header>
+            <h1> Parc zoologique de Grenoble </h1>
+        </header>
+        <hr>
+        <nav>
+            <h2> Menu </h2>
+            <a href="accueil.html"> Accueil </a> &nbsp
+            <a href="perso.html"> Espace perso </a> &nbsp
+            <a href="animaux.html"> Animaux </a> &nbsp
+            <a href="visite_audio.html"> Visite virtuelle audio </a> &nbsp
+            <a href="visite_video.html"> Visite virtuelle vidéo </a> &nbsp
+            <a href="contact.html"> Contact </a>
+        </nav>
+        <hr>
+        <div>
+            <h2> Remplissez le formulaire suivant </h2>
+            <form action="accueil.html" method=post>
+                <label for="nom"> Nom : </label>
+                <input id="nom" type="text" name="nom" required>
+                <br>
+                <label for="prenom"> Prénom : </label>
+                <input id="prenom" type="text" name="prenom">
+                <br>
+                <label for="email"> Email : </label>
+                <input id="email" type="email" name="email" required>
+                <br>
+                <label for="tel"> Numéro de téléphone : </label>
+                <input id="tel" type="tel" pattern="[0-9]{10}" name="tel">
+                <br>
+                <label for="message"> Message : </label>
+                <br>
+                <textarea id="message" name="message" rows="8" cols="50" required></textarea> <!-- Ne rien mettre entre les deux balises, sinon se retrouve dans la zone de texte (même les espaces)-->
+                <br>
+                <input type="submit" value="Envoyer">
+            </form>
+        </div>
+        <hr>
+        <footer>
+            <h3> Informations pratiques </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </footer>
+    </body>
+
+</html>
