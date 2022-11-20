@@ -32,7 +32,6 @@ var boutonForm = document.getElementById('bouton_form_anim') ;
 var menuJSON =
     `{
         "name":"nav",
-        "class":"premier_niveau",
         "children":
             [
                 {
@@ -337,7 +336,7 @@ function ecritureDonnees (tableauAnimaux) {
 
 var nbEltsTableau = 0 ;
 
-// Fonction ajoutant une ligne au tableau HTML à partir de la donnée d'un objet de type Animal
+// Fonction ajoutant une ligne au tableau HTML à partir de la donnée d'un objet de type Animal (voir le fichier CSS pour des explications sur l'affichage du tableau en RWD)
 function ajoutAnimalTableauHTML (animal) {
 
     // Incrémentation de la variable "nombre d'éléments du tableau"
@@ -352,6 +351,9 @@ function ajoutAnimalTableauHTML (animal) {
         couleur = "#c06a39" ;
     }
 
+    // Classe supplémentaire pour ne pas afficher les en-têtes secondaires
+    var classeDeuxieme = (nbEltsTableau > 1) ? " deuxieme" : "" ;
+
     // Création du contenu HTML de l'élément tableau (avec callback du bouton adaptée à la ligne du tableau)
     var idLigne = "tr_" + nbEltsTableau ;
     var idBoutonMod = "btnMod_" + nbEltsTableau ;
@@ -359,36 +361,75 @@ function ajoutAnimalTableauHTML (animal) {
     var idBoutonDec = "btnDec_" + nbEltsTableau ;
     if (utilisateur == 'admin') {
         tableauHTML.innerHTML +=
-            '<tr id="' + idLigne + '" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' +
-                '<td>' + animal.nom + '</td>' +
-                '<td> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </td>' +
-                '<td> <i>' + animal.description + '</i> </td>' +
-                '<td>' + animal.pays + '</td>' +
-                '<td> <button id="' + idBoutonMod + "\" onclick=\"modificationAnimalUn('" + idBoutonMod + "')\"> Modifier </button> </td>" +  // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
-                '<td> <button id="' + idBoutonSuppr + "\" onclick=\"supprimerAnimalTableaux('" + idBoutonSuppr + "')\"> Supprimer </button> </td>" + // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
-                '<td> <a href="#tableau"> retour vers le haut du tableau</a> </td>' +
-            '</tr>' ;
+            '<div class="paire">' +
+
+                '<div class="tete' + classeDeuxieme + '" style="background-color : #84503c">' +
+                    '<div class="cellule">Nom</div>' +
+                    '<div class="cellule image">Image</div>' +
+                    '<div class="cellule">Description</div>' +
+                    '<div class="cellule">Pays natal</div>' +
+                    '<div class="cellule">Modifier</div>' +
+                    '<div class="cellule">Supprimer</div>' +
+                    '<div class="cellule">Retour</div>' +
+                '</div>' +
+
+                '<div id="' + idLigne + '"class="ligne" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' + 
+                    '<div class="cellule">' + animal.nom + '</div>' +
+                    '<div class="cellule image"> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </div>' +
+                    '<div class="cellule">' + animal.description + '</div>' +
+                    '<div class="cellule">' + animal.pays + '</div>' +
+                    '<div class="cellule"> <button id="' + idBoutonMod + "\" onclick=\"modificationAnimalUn('" + idBoutonMod + "')\"> Modifier </button> </div>" +
+                    '<div class="cellule"> <button id="' + idBoutonSuppr + "\" onclick=\"supprimerAnimalTableaux('" + idBoutonSuppr + "')\"> Supprimer </button> </div>" +
+                    '<div class="cellule"> <a href="#tableau"> retour vers le haut du tableau</a> </div>' +
+                '</div>' +
+
+            '</div>' ;
     }
     else if (utilisateur == 'user') {
         tableauHTML.innerHTML +=
-            '<tr id="' + idLigne + '" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' +
-                '<td>' + animal.nom + '</td>' +
-                '<td> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </td>' +
-                '<td> <i>' + animal.description + '</i> </td>' +
-                '<td>' + animal.pays + '</td>' +
-                '<td> <button id="' + idBoutonMod + "\" onclick=\"decouverteAnimal('" + idBoutonDec + "')\"> Découvrir </button> </td>" +  // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
-                '<td> <a href="#tableau"> retour vers le haut du tableau</a> </td>' +
-            '</tr>' ;
+            '<div class="paire">' + 
+
+                '<div class="tete' + classeDeuxieme + '" style="background-color : #84503c">' +
+                    '<div class="cellule">Nom</div>' +
+                    '<div class="cellule image">Image</div>' +
+                    '<div class="cellule">Description</div>' +
+                    '<div class="cellule">Pays natal</div>' +
+                    '<div class="cellule">Découvrir</div>' +
+                    '<div class="cellule">Retour</div>' +
+                '</div>' +
+
+                '<div id="' + idLigne + '"class="ligne" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' + 
+                    '<div class="cellule">' + animal.nom + '</div>' +
+                    '<div class="cellule image"> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </div>' +
+                    '<div class="cellule">' + animal.description + '</div>' +
+                    '<div class="cellule">' + animal.pays + '</div>' +
+                    '<div class="cellule"> <button id="' + idBoutonMod + "\" onclick=\"decouverteAnimal('" + idBoutonDec + "')\"> Découvrir </button> </div>" +
+                    '<div class="cellule"> <a href="#tableau"> retour vers le haut du tableau</a> </div>' +
+                '</div>' +
+                
+            '</div>' ;
     }
     else if (utilisateur == 'visiteur') {
         tableauHTML.innerHTML +=
-        '<tr id="' + idLigne + '" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' +
-                '<td>' + animal.nom + '</td>' +
-                '<td> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </td>' +
-                '<td> <i>' + animal.description + '</i> </td>' +
-                '<td>' + animal.pays + '</td>' +
-                '<td> <a href="#tableau"> retour vers le haut du tableau</a> </td>' +
-            '</tr>' ;
+            '<div class="paire">' + 
+
+                '<div class="tete' + classeDeuxieme + '" style="background-color : #84503c">' +
+                    '<div class="cellule">Nom</div>' +
+                    '<div class="cellule image">Image</div>' +
+                    '<div class="cellule">Description</div>' +
+                    '<div class="cellule">Pays natal</div>' +
+                    '<div class="cellule">Retour</div>' +
+                '</div>' +
+
+                '<div id="' + idLigne + '"class="ligne" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' + 
+                    '<div class="cellule">' + animal.nom + '</div>' +
+                    '<div class="cellule image"> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </div>' +
+                    '<div class="cellule">' + animal.description + '</div>' +
+                    '<div class="cellule">' + animal.pays + '</div>' +
+                    '<div class="cellule"> <a href="#tableau"> retour vers le haut du tableau</a> </div>' +
+                '</div>' +
+
+            '</div>' ;
     }
 }
 
@@ -397,26 +438,9 @@ function affichageCompletTableauHTML() {
 
     nbEltsTableau = 0 ;
 
-    // Ligne d'en-tête du tableau (dépend de l'utilisateur du site)
-    if (utilisateur == 'admin') {
-        tableauHTML.innerHTML = 
-            `<tr>
-                <th> Nom </th>  <th> Image </th>  <th> Description </th>  <th> Pays natal </th>  <th> Modifier </th>  <th> Supprimer </th>  <th> Retour </th>
-            </tr>` ;
-    }
-    else if (utilisateur == 'user') {
-        tableauHTML.innerHTML =
-            `<tr>
-                <th> Nom </th>  <th> Image </th>  <th> Description </th>  <th> Pays natal </th>  <th> Découvrir </th>  <th> Retour </th>
-            </tr>` ;
+    // Ligne d'en-tête du tableau
+    tableauHTML.innerHTML = '' ;
 
-    }
-    else if (utilisateur == 'visiteur') {
-        tableauHTML.innerHTML =
-        `<tr>
-            <th> Nom </th>  <th> Image </th>  <th> Description </th>  <th> Pays natal </th> <th> Retour </th>
-        </tr>` ;
-    }
 
     // Lignes du tableau contenant les animaux
     tableauAnimaux.forEach (animal => ajoutAnimalTableauHTML(animal)) ;
@@ -527,10 +551,10 @@ function modificationAnimalDeux (event, id) {
 
     // Modification du tableau HTML
     var ligne = document.getElementById("tr_"+numLigTabHTML) ;
-    ligne.cells[0].textContent = nom ;
-    ligne.cells[1].innerHTML = '<img src="' + image + '" alt=\"Image manquante\">' ;
-    ligne.cells[2].innerHTML = '<i> ' + description + ' </i>' ;
-    ligne.cells[3].textContent = pays ;
+    ligne.childNodes[0].textContent = nom ;
+    ligne.childNodes[1].innerHTML = '<img src="' + image + '" alt=\"Image manquante\">' ;
+    ligne.childNodes[2].innerHTML = '<i> ' + description + ' </i>' ;
+    ligne.childNodes[3].textContent = pays ;
 
     // Retour à l'état initial
     modificationAnimalTrois(id) ;
@@ -590,7 +614,8 @@ function decouverteAnimal (id) {
 
     // Récupération de l'image
     var ligne = document.getElementById("tr_"+numLigTabHTML) ;
-    var image = ligne.cells[1].childNodes[1] ;
+    var image = ligne.childNodes[1].childNodes[1] ;
+    console.log(image) ;
 
     // Ajout de la classe zoom à l'image sélectionnée
     image.className += ' zoom' ;
