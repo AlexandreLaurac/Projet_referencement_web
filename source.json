@@ -1,0 +1,32 @@
+[
+    {
+        "nom":"Lion d'Afrique",
+        "image":"images/lion.jpg",
+        "description":"Panthera leo",
+        "pays":"Ethiopie, Tanzanie, Botswana, Afrique du Sud, etc."
+    },
+    {
+        "nom":"Elephant d'Afrique",
+        "image":"images/elephant.jpg",
+        "description":"Loxodonta africana",
+        "pays":"Kenya, Namibie, Mozambique, Ouganda, etc."
+    },
+    {
+        "nom":"Buffle d'Afrique",
+        "image":"images/buffle.jpg",
+        "description":"Syncerus caffer",
+        "pays":"Côte d'Ivoire, Cameroun, Gabon, Congo, etc."
+    },
+    {
+        "nom":"Léopard d'Afrique",
+        "image":"images/leopard.jpg",
+        "description":"Panthera pardus",
+        "pays":"Angola, Zambie, Zimbabwe, Centrafrique, etc."
+    },
+    {
+        "nom":"Rhinocéros noir",
+        "image":"images/rhinoceros.jpg",
+        "description":"Diceros bicornis",
+        "pays":"Afrique du Sud, Namibie, Zimbabwe, Kenya, etc."
+    }
+]

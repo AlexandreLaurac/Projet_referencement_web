@@ -1,14 +1,22 @@
 //--------------------------------------------------------------- Elements HTML ---------------------------------------------------------------//
 
 // Menu de navigation
-var divMenuNav = document.getElementById("div_menu_nav") ;
+var menuNav = document.getElementById("div_menu_nav") ;
+
+// Elements de la page de connexion et d'espace personnel
+var divConnex = document.getElementById('connexion') ;
+var divInfosPerso = document.getElementById('infos_perso') ;
+var formConnex = document.getElementById('form_connexion') ;
+var identifiant = document.getElementById('identifiant') ;
+var motDePasse = document.getElementById('mot_de_passe') ;
 
 // Tableau des animaux du parc zoologique
 var tableauHTML = document.getElementById('tableau') ;
 
-// Formulaire d'ajout et de modification des animaux
-var formulaire = document.getElementById('form_ajout_anim') ;
-var titreForm = document.getElementById('titre_form') ;
+// Eléments du formulaire d'ajout et de modification des animaux
+var contFormAnim = document.getElementById('conteneur_form_ajout_anim') ;
+var formAnim = document.getElementById('form_ajout_anim') ;
+var titreForm = document.getElementById('titre_form_ajout_anim') ;
 var nomForm = document.getElementById('nom_form') ;
 var imageForm = document.getElementById('image_form') ;
 var descrForm = document.getElementById('descr_form') ;
@@ -16,9 +24,10 @@ var paysForm = document.getElementById('pays_form') ;
 var boutonForm = document.getElementById('bouton_form_anim') ;
 
 
-//------------------------------------------------------------- Affichage du menu -------------------------------------------------------------//
+//------------------------------------------------------------- Création du menu -------------------------------------------------------------//
 
 //// 1. Structure des données
+//// Menu modifié par rapport aux TP précédents : pas de sous-menus car les pages créées (avec formulaire ou informations personnelles) les remplacent 
 
 var menuJSON =
     `{
@@ -49,62 +58,12 @@ var menuJSON =
                                 "children":
                                     [
                                         {
-                                            "name":"nav",
-                                            "class":"deuxieme_niveau",
-                                            "children":
-                                                [
-                                                    {
-                                                        "name":"a",
-                                                        "id":"lien_2",
-                                                        "class":"lien_menu",
-                                                        "href":"#",
-                                                        "onclick":"affichagePage(2)",
-                                                        "content":"Espace personnel"
-                                                    },
-                                                    {
-                                                        "name":"ul",
-                                                        "children":
-                                                            [
-                                                                {
-                                                                    "name":"li",
-                                                                    "content":"Connexion"
-                                                                },
-                                                                {
-                                                                    "name":"li",
-                                                                    "class":"troisieme_niveau",
-                                                                    "content":"Mes informations",
-                                                                    "children":
-                                                                        [
-                                                                            {
-                                                                                "name":"ul",
-                                                                                "children":
-                                                                                    [
-                                                                                        {
-                                                                                            "name":"li",
-                                                                                            "content":"Nom et prénom"
-                                                                                        },
-                                                                                        {
-                                                                                            "name":"li",
-                                                                                            "content":"Numéro de téléphone"
-                                                                                        },
-                                                                                        {   "name":"li",
-                                                                                            "content":"Email"
-                                                                                        }
-                                                                                    ]
-                                                                            }
-                                                                        ]
-                                                                },
-                                                                {
-                                                                    "name":"li",
-                                                                    "content":"Messagerie"
-                                                                },
-                                                                {
-                                                                    "name":"li",
-                                                                    "content":"Historique"
-                                                                }
-                                                            ]
-                                                    }
-                                                ]
+                                            "name":"a",
+                                            "id":"lien_2",
+                                            "class":"lien_menu",
+                                            "href":"#",
+                                            "onclick":"affichagePage(2)",
+                                            "content":"Espace personnel"
                                         }
                                     ]
                             },
@@ -165,7 +124,7 @@ var menuJSON =
                                     ]
                             }
                         ]
-
+                    
                 }
             ]
     }` ;
@@ -216,15 +175,107 @@ function creationMenu (objet) {
 }
 
 var nav = creationMenu(menuObj) ;
-divMenuNav.appendChild(nav) ;
+menuNav.appendChild(nav) ;
+
+
+//-------------------------------------------------- Page d'espace personnel ---------------------------------------------------//
+
+var utilisateur = 'visiteur' ;
+
+// Fonction choisissant le contenu de la page
+function contenuPagePerso() {
+
+    divConnex.style.display = 'none' ;
+    divInfosPerso.style.display = 'none' ;
+
+    // Gestion du cas 'visiteur' (la personne surfant sur la page ne s'est pas connectée, on lui propose un formulaire de connexion)
+    if (utilisateur == 'visiteur') {
+        divConnex.style.display = 'block' ;
+    }
+    
+    // Gestion du cas 'user' ou 'admin' (le visiteur s'est connecté selon l'un de ces deux login, on affiche ses informations personnelles)
+    else if (utilisateur == 'user' || utilisateur == 'admin') {
+        divInfosPerso.style.display = 'flex' ;
+    }
+}
+
+// Fonction générique de requête AJAX
+function ajaxPostRequest (callback, url, async, data) {
+    var xhr = new XMLHttpRequest() ;
+    xhr.open("POST", url, async) ;
+    xhr.addEventListener("load", callback) ;
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded') ;
+    xhr.send(data) ;
+}
+
+// Fonction callback associée à la soumission du formulaire de connexion
+function soumFormConnex (event) {
+    
+    // Empêcher la page de se recharger
+    event.preventDefault() ;
+
+    // Récupération du contenu des inputs du formulaire
+    var login = identifiant.value ;
+    var password = motDePasse.value ;
+
+    // Requête Ajax pour la connexion
+    var url = "http://localhost:8080/connexion.php" ;
+    var donnees = "login=" + login + "&password=" + password ;
+    ajaxPostRequest (reponseConnex, url, true, donnees) ;
+}
+
+formConnex.onsubmit = soumFormConnex ;
+
+// Fonction callback déclenchée à la réponse du serveur suite à la requête Ajax de soumission du formulaire
+function reponseConnex () {
+
+    // Analyse de la chaine Json reçue
+    var reponse = JSON.parse(this.responseText) ;
+    
+    // Identifiant et mot de passe corrects
+    if (reponse.resultat == 'success') {
+
+        // Message de réussite à l'utilisateur
+        alert ("Vous êtes maintenant connecté(e) au site") ;
+    
+        // Récupération du login
+        utilisateur = identifiant.value ;
+
+        // Réinitialisation des inputs
+        identifiant.value = "" ;
+        motDePasse.value = "" ;
+
+        // Affichage des informations personnelles
+        divInfosPerso.innerHTML =
+            '<h2> Informations personnelles </h2>' +
+            '<ul>' + 
+                '<li> Nom : ' + reponse.nom + ', prénom : ' + reponse.prenom + '</li>' + 
+                '<li> Numéro de téléphone : ' + reponse.tel + '</li>' +
+                '<li> Email : ' + reponse.email + '</li>' +
+            '</ul>' ;
+        contenuPagePerso() ;
+
+        // Mise à jour du contenu du tableau HTML et affichage ou non du formulaire de modification associé
+        affichageCompletTableauHTML() ;
+        affichageFormGestTableauHTML() ;
+    }
+
+    // Identifiant et mot de passe incorrects
+    else if (reponse.resultat == 'failure') {
+        alert ("Mauvais identifiant ou mot de passe") ;
+    }
+}
+
+// Création effective
+contenuPagePerso() ;
 
 
 //----------------------------------------------------------- Affichage des "pages" -----------------------------------------------------------//
 
 // Fonction permettant l'affichage des différentes "pages" du site (précédemment de véritables pages, maintenant des div affichés quand les autres sont masqués)
 function affichagePage (i) { // i est le numéro de la "page" à afficher
-
-    //// 1. Mise en évidence de la "page" active dans le menu de navigation (changement de couleur du lien correspondant)
+    
+    //// 1. Mise en évidence de la "page" active dans le menu de navigation (changement de couleur du lien correspondant) 
 
     // Classe de tous les liens du menu remise à la seule valeur 'lien_menu'
     var liens = document.querySelectorAll('.lien_menu') ;
@@ -255,7 +306,7 @@ affichagePage(1) ;
 
 //------------------------------------------------------------- Gestion du tableau --------------------------------------------------------//
 
-//// 1. Structure des données
+//// 1. Structure des données, requêtes AJAX et fonctions callback associées pour leur lecture et leur écriture
 
 // Constructeur de la classe Animal
 function Animal (nom, image, description, pays) {
@@ -265,42 +316,21 @@ function Animal (nom, image, description, pays) {
     this.pays = pays ;
 }
 
-var tableauJson =
-    `[
-        {
-            "nom":"Lion d'Afrique",
-            "image":"images/lion.jpg",
-            "description":"Panthera leo",
-            "pays":"Ethiopie, Tanzanie, Botswana, Afrique du Sud, etc."
-        },
-        {
-            "nom":"Elephant d'Afrique",
-            "image":"images/elephant.jpg",
-            "description":"Loxodonta africana",
-            "pays":"Kenya, Namibie, Mozambique, Ouganda, etc."
-        },
-        {
-            "nom":"Buffle d'Afrique",
-            "image":"images/buffle.jpg",
-            "description":"Syncerus caffer",
-            "pays":"Côte d'Ivoire, Cameroun, Gabon, Congo, etc."
-        },
-        {
-            "nom":"Léopard d'Afrique",
-            "image":"images/leopard.jpg",
-            "description":"Panthera pardus",
-            "pays":"Angola, Zambie, Zimbabwe, Centrafrique, etc."
-        },
-        {
-            "nom":"Rhinocéros noir",
-            "image":"images/rhinoceros.jpg",
-            "description":"Diceros bicornis",
-            "pays":"Afrique du Sud, Namibie, Zimbabwe, Kenya, etc."
-        }
-    ]` ;
+var tableauAnimaux = [] ;
 
+// Fonction callback associée à la requête d'obtention du fichier source.json contenant les données à afficher dans le tableau HTML
+function recuperationDonnees() {
+    tableauAnimaux = JSON.parse(this.responseText) ;
+    affichageCompletTableauHTML() ; // Appel de cette fonction ici, pour attendre d'avoir les données nécessaires à l'affichage du tableau HTML
+}
 
-var tableauAnimaux = JSON.parse(tableauJson) ;
+// Fonction d'envoi des données suite à la modification du tableau HTML (ajout, modification ou suppression d'une ligne) pour réécriture du fichier source.json
+function ecritureDonnees (tableauAnimaux) {
+    var url = "http://localhost:8080/ecriture.php" ;
+    chaineJson = JSON.stringify (tableauAnimaux) ;
+    var data = "data=" + chaineJson ;
+    ajaxPostRequest (null, url, true, data) ;
+}
 
 
 //// 2. Remplissage effectif
@@ -326,16 +356,40 @@ function ajoutAnimalTableauHTML (animal) {
     var idLigne = "tr_" + nbEltsTableau ;
     var idBoutonMod = "btnMod_" + nbEltsTableau ;
     var idBoutonSuppr = "btnSup_" + nbEltsTableau ;
-    tableauHTML.innerHTML +=
+    var idBoutonDec = "btnDec_" + nbEltsTableau ;
+    if (utilisateur == 'admin') {
+        tableauHTML.innerHTML +=
+            '<tr id="' + idLigne + '" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' +
+                '<td>' + animal.nom + '</td>' +
+                '<td> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </td>' +
+                '<td> <i>' + animal.description + '</i> </td>' +
+                '<td>' + animal.pays + '</td>' +
+                '<td> <button id="' + idBoutonMod + "\" onclick=\"modificationAnimalUn('" + idBoutonMod + "')\"> Modifier </button> </td>" +  // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
+                '<td> <button id="' + idBoutonSuppr + "\" onclick=\"supprimerAnimalTableaux('" + idBoutonSuppr + "')\"> Supprimer </button> </td>" + // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
+                '<td> <a href="#tableau"> retour vers le haut du tableau</a> </td>' +
+            '</tr>' ;
+    }
+    else if (utilisateur == 'user') {
+        tableauHTML.innerHTML +=
+            '<tr id="' + idLigne + '" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' +
+                '<td>' + animal.nom + '</td>' +
+                '<td> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </td>' +
+                '<td> <i>' + animal.description + '</i> </td>' +
+                '<td>' + animal.pays + '</td>' +
+                '<td> <button id="' + idBoutonMod + "\" onclick=\"decouverteAnimal('" + idBoutonDec + "')\"> Découvrir </button> </td>" +  // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
+                '<td> <a href="#tableau"> retour vers le haut du tableau</a> </td>' +
+            '</tr>' ;
+    }
+    else if (utilisateur == 'visiteur') {
+        tableauHTML.innerHTML +=
         '<tr id="' + idLigne + '" style="background-color : ' + couleur + '" onmouseover="this.style.background=\'#84503c\'" onmouseout="this.style.background=\'' + couleur + '\'">' +
-            '<td>' + animal.nom + '</td>' +
-            '<td> <img src="' + animal.image + '" alt="Image manquante"> </td>' +
-            '<td> <i>' + animal.description + '</i> </td>' +
-            '<td>' + animal.pays + '</td>' +
-            '<td> <button id="' + idBoutonMod + "\" onclick=\"modificationAnimalUn('" + idBoutonMod + "')\"> Modifier </button> </td>" +  // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
-            '<td> <button id="' + idBoutonSuppr + "\" onclick=\"supprimerAnimalTableaux('" + idBoutonSuppr + "')\"> Supprimer </button> </td>" +  // Ajout d'une callback onclick aux boutons, dépendant du numéro de ligne
-            '<td> <a href="#tableau"> retour vers le haut du tableau</a> </td>' +
-        '</tr>' ;
+                '<td>' + animal.nom + '</td>' +
+                '<td> <img class="images_tableau" src="' + animal.image + '" alt="Image manquante"> </td>' +
+                '<td> <i>' + animal.description + '</i> </td>' +
+                '<td>' + animal.pays + '</td>' +
+                '<td> <a href="#tableau"> retour vers le haut du tableau</a> </td>' +
+            '</tr>' ;
+    }
 }
 
 // Fonction réalisant l'affichage d'un tableau complet à partir du tableau JS des animaux 'tableauAnimaux' et de la fonction précédente
@@ -343,21 +397,51 @@ function affichageCompletTableauHTML() {
 
     nbEltsTableau = 0 ;
 
-    // Ligne d'en-tête du tableau
-    tableauHTML.innerHTML = "" ;
-    tableauHTML.innerHTML +=
+    // Ligne d'en-tête du tableau (dépend de l'utilisateur du site)
+    if (utilisateur == 'admin') {
+        tableauHTML.innerHTML = 
+            `<tr>
+                <th> Nom </th>  <th> Image </th>  <th> Description </th>  <th> Pays natal </th>  <th> Modifier </th>  <th> Supprimer </th>  <th> Retour </th>
+            </tr>` ;
+    }
+    else if (utilisateur == 'user') {
+        tableauHTML.innerHTML =
+            `<tr>
+                <th> Nom </th>  <th> Image </th>  <th> Description </th>  <th> Pays natal </th>  <th> Découvrir </th>  <th> Retour </th>
+            </tr>` ;
+
+    }
+    else if (utilisateur == 'visiteur') {
+        tableauHTML.innerHTML =
         `<tr>
-            <th> Nom </th>  <th> Image </th>  <th> Description </th>  <th> Pays natal </th>  <th> Modifier </th>  <th> Supprimer </th>  <th> Retour </th>
+            <th> Nom </th>  <th> Image </th>  <th> Description </th>  <th> Pays natal </th> <th> Retour </th>
         </tr>` ;
+    }
 
     // Lignes du tableau contenant les animaux
     tableauAnimaux.forEach (animal => ajoutAnimalTableauHTML(animal)) ;
 }
 
-affichageCompletTableauHTML() ;
+// Requête effective AJAX pour l'obtention des données et l'affichage du tableau HTML
+var url = "http://localhost:8080/source.json" ;
+ajaxPostRequest (recuperationDonnees, url, true, null) ;
 
 
-//// 3. Ajout d'un animal à partir du formulaire
+//// 3. Affichage ou non du formulaire de gestion du tableau en fonction de l'utilisateur du site
+
+function affichageFormGestTableauHTML() {
+    if (utilisateur == 'visiteur' || utilisateur == 'user') {
+        contFormAnim.style.display = 'none' ; 
+    }
+    else if (utilisateur == 'admin') {
+        contFormAnim.style.display = 'block' ;
+    }
+}
+
+affichageFormGestTableauHTML() ;
+
+
+//// 4. Ajout d'un animal à partir du formulaire
 
 // Fonction d'ajout d'un animal associée à l'événement "soumission du formulaire"
 function ajoutAnimalFormulaire(event) {
@@ -377,8 +461,12 @@ function ajoutAnimalFormulaire(event) {
     // Ajout de l'animal au tableau JS des animaux
     tableauAnimaux.push(nouvelAnimal) ;
 
+    // Sauvegarde du tableau mis à jour dans le fichier source.json
+    ecritureDonnees(tableauAnimaux) ;
+
     // Ajout d'une ligne au tableau HTML existant avec l'objet Animal créé
     ajoutAnimalTableauHTML(nouvelAnimal) ;
+
 
     // Suppression du contenu des input
     nomForm.value = "" ;
@@ -387,10 +475,10 @@ function ajoutAnimalFormulaire(event) {
     paysForm.value = "" ;
 }
 
-formulaire.onsubmit = ajoutAnimalFormulaire ;
+formAnim.onsubmit = ajoutAnimalFormulaire ;
 
 
-//// 4. Modification d'un animal
+//// 5. Modification d'un animal
 
 // Fonction réalisant la première partie de modification d'un animal : modification du formulaire
 function modificationAnimalUn (id) {
@@ -405,13 +493,13 @@ function modificationAnimalUn (id) {
     imageForm.value = animalCourant.image ;
     descrForm.value = animalCourant.description ;
     paysForm.value = animalCourant.pays ;
-    boutonForm.value = "Modifier" ;
+    boutonForm.value = "Modifier" ; 
 
     // Déplacement dans la page vers le dernier élément du formulaire
     paysForm.focus()
 
     // Modification de la callback associée au bouton
-    formulaire.onsubmit = event => modificationAnimalDeux(event, id) ;
+    formAnim.onsubmit = event => modificationAnimalDeux(event, id) ;
 }
 
 // Fonction réalisant la deuxième partie de la modification d'un animal : modification des tableaux (HTML et des objets de type "Animal")
@@ -428,11 +516,14 @@ function modificationAnimalDeux (event, id) {
 
     // Modification du tableau des animaux
     var numLigTabHTML = parseInt (id.slice(7,id.length)) ;
-    var num_animal = numLigTabHTML - 1 ;
-    tableauAnimaux[num_animal].nom = nom ;
-    tableauAnimaux[num_animal].image = image ;
-    tableauAnimaux[num_animal].description = description ;
-    tableauAnimaux[num_animal].pays = pays ;
+    var numAnimal = numLigTabHTML - 1 ;
+    tableauAnimaux[numAnimal].nom = nom ;
+    tableauAnimaux[numAnimal].image = image ;
+    tableauAnimaux[numAnimal].description = description ;
+    tableauAnimaux[numAnimal].pays = pays ;
+
+    // Sauvegarde du tableau mis à jour dans le fichier source.json
+    ecritureDonnees(tableauAnimaux) ;
 
     // Modification du tableau HTML
     var ligne = document.getElementById("tr_"+numLigTabHTML) ;
@@ -458,14 +549,14 @@ function modificationAnimalTrois (id) {
     paysForm.value = "" ;
 
     // Modification du bouton de soumission
-    boutonForm.value = "Envoyer" ;
+    boutonForm.value = "Envoyer" ; 
 
     // Modification de la callback associée à l'envoi du formulaire
-    formulaire.onsubmit = ajoutAnimalFormulaire ;
+    formAnim.onsubmit = ajoutAnimalFormulaire ;
 }
 
 
-//// 5. Suppression d'un animal du tableau
+//// 6. Suppression d'un animal du tableau
 
 function supprimerAnimalTableaux (id) {
 
@@ -478,6 +569,29 @@ function supprimerAnimalTableaux (id) {
     var indiceAnimal = numLigTabHTML - 1 ;
     tableauAnimaux.splice(indiceAnimal,1) ;
 
+    // Sauvegarde du tableau mis à jour dans le fichier source.json
+    ecritureDonnees(tableauAnimaux) ;
+
     // Nouvel affichage du tableau HTML à partir du nouveau tableau JS
     affichageCompletTableauHTML() ;
+}
+
+
+//// 7. "Découverte" d'un animal (zoom de l'élément choisi)
+
+function decouverteAnimal (id) {
+
+    // Remise à la valeur initiale de la classe des images
+    var imagesTableau = document.querySelectorAll('.images_tableau') ;
+    imagesTableau.forEach (image => image.className = 'images_tableau') ;
+
+    // Modification du tableau des animaux
+    var numLigTabHTML = parseInt (id.slice(7,id.length)) ;
+
+    // Récupération de l'image
+    var ligne = document.getElementById("tr_"+numLigTabHTML) ;
+    var image = ligne.cells[1].childNodes[1] ;
+
+    // Ajout de la classe zoom à l'image sélectionnée
+    image.className += ' zoom' ;
 }

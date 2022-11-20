@@ -62,56 +62,20 @@ nav.premier_niveau > ul {
     display : flex ; justify-content : space-evenly ; align-items : center ;
 }
 
-/* Règles de l'élément nav de deuxième niveau */
-nav.deuxieme_niveau {
-    position : relative ;
+
+/******* Règles de style relatives à la page d'informations personnelles ******/
+
+#infos_perso {
+    display : flex ;
+    flex-direction : column ;
+    justify-content : flex-start ;
+    align-items : center ;
+    margin-bottom : 20px ;
 }
 
-/* Règles de l'élément ul du nav de deuxième niveau */
-nav.deuxieme_niveau > ul {
-    margin : 0px ; padding : 0px ;
-    width : max-content ;
-    position : absolute ; top : 1em ;
-    background-color : #c3d2dd ;
-    display : flex ; flex-direction : column ; justify-content : start ; align-items : flex-start ;
-}
-
-/* Règles des items de l'ul du nav de deuxième niveau : non affichés par défaut */
-nav.deuxieme_niveau > ul > li {
-    display : none ;
-}
-
-/* Règles des items de l'ul du nav de deuxième niveau : affichés lors du passage sur le nav de deuxième niveau + autres propriétés */
-nav.deuxieme_niveau:hover > ul > li {
-    display : block ;
-    padding : 1em 0em 0em 0em ;
-    font-weight : bold ;
-    color : #84503c ;
-}
-
-/* Règles de l'élément servant de nav de troisième niveau */
-li.troisieme_niveau {
-    position : relative ;
-}
-
-/* Règles de l'ul de l'élément servant de nav de troisième niveau */
-li.troisieme_niveau > ul {
-    width : max-content ;
-    padding : 0px ;
-    position : absolute ; top : 0px ; left : 170px ;
-    display : flex ; flex-direction : column ; justify-content : start ; align-items : flex-start ;
-}
-
-/* Règles des items de l'ul du nav de troisième niveau : non affichés par défaut */
-li.troisieme_niveau li {
-    display : none ;
-}
-
-/* Règles des items de l'ul du nav de troisième niveau : affichés lors du passage sur le nav de troisième niveau + autres propriétés */
-li.troisieme_niveau:hover > ul > li {
-    display : block ;
-    padding : 1em 0em 0em 0em ;
-    color : #c2825c ;
+#infos_perso ul {
+    margin : 0 ;
+    padding : 0 ;
 }
 
 
@@ -178,6 +142,16 @@ li.troisieme_niveau:hover > ul > li {
     color : black ;
 }
 
+/* Zoom sur les images */
+.zoom {
+    transition : transform .2s ;
+}
+
+.zoom:hover {
+    transform : scale(1.5) ;
+}
+
+
 /******** Règles de style relatives aux enregistrements audio et video ********/
 
 /* Règles du div conteneur des enregistrements */
@@ -196,7 +170,7 @@ figcaption {
 }
 
 
-/******************* Règles de style relatives au formulaire ******************/
+/****************** Règles de style relatives aux formulaires *****************/
 
 /**** Règles communes ****/
 
@@ -242,8 +216,13 @@ figcaption {
 
 /**** Règles spécifiques ****/
 
+/* Formulaire de connexion */
+#form_connexion {
+    width : 240px ;
+}
+
 /* Titre au-dessus du formulaire des animaux */
-#titre_form {
+#titre_form_ajout_anim {
     text-align : center ;
 }
 
