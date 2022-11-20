@@ -5,55 +5,72 @@
         <meta charset="utf-8">
         <meta name="description" content="parc zoologique, Grenoble, visites, visites guidées">
         <title> Parc zoologique de Grenoble </title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
         <header>
             <h1> Parc zoologique de Grenoble </h1>
         </header>
-        <hr>
-        <nav>
-            <h2> Menu </h2>
-            <a href="accueil.html"> Accueil </a> &nbsp
-            <a href="perso.html"> Espace perso </a> &nbsp
-            <a href="animaux.html"> Animaux </a> &nbsp
-            <a href="visite_audio.html"> Visite virtuelle audio </a> &nbsp
-            <a href="visite_video.html"> Visite virtuelle vidéo </a> &nbsp
-            <a href="contact.html"> Contact </a>
+        <nav class="premier_niveau">
+            <ul>
+                <li> <a href="accueil.html"> Accueil </a> </li>
+                <li>
+                    <nav class="deuxieme_niveau">
+                        <a href="perso.html"> Espace personnel </a>
+                        <ul>
+                            <li> Connexion </li>
+                            <li class="troisieme_niveau"> Mes informations
+                                <ul>
+                                    <li> Nom et prénom </li>
+                                    <li> Numéro de téléphone </li>
+                                    <li> Email </li>
+                                </ul>
+                            </li>
+                            <li> Messagerie </li>
+                            <li> Historique </li>
+                        </ul>
+                    </nav>
+                <li> <a href="animaux.html"> Animaux </a> </li>
+                <li> <a class="actif" href="visite_audio.html"> Visite virtuelle audio </a> </li>
+                <li> <a href="visite_video.html"> Visite virtuelle vidéo </a> </li>
+                <li> <a href="contact.html"> Contact </a> </li>
+            </ul>
         </nav>
-        <hr>
         <div>
             <h2> Enregistrements sonores des animaux </h2>
-            <figure>
-                <figcaption> Enregistrement du lion </figcaption>
-                <audio controls autoplay>
-                    <source src="audio/lion.mp3" type="audio/mpeg">
-                </audio>
-            </figure>
-            <figure>
-                <figcaption> Enregistrement de l'éléphant </figcaption>
-                <audio controls>
-                    <source src="https://www.freesoundeffects.com/mp3_466268.mp3" type="audio/mpeg">
-                </audio>
-            </figure>
-            <figure>
-                <figcaption> Enregistrement du buffle </figcaption>
-                <audio controls>
-                    <source src="" type="audio/mpeg">
-                </audio>
-            </figure>
-            <figure>
-                <figcaption> Enregistrement du léopard </figcaption>
-                <audio controls>
-                    <source src="" type="audio/mpeg">
-                </audio>
-            </figure>
-            <figure>
-                <figcaption> Enregistrement du rhinocéros </figcaption>
-                <audio controls>
-                    <source src="" type="audio/mpeg">
-                </audio>
-            </figure>
+            <div id="conteneur_enreg">
+                <figure>
+                    <figcaption> Enregistrement du lion </figcaption>
+                    <audio controls autoplay>
+                        <source src="audio/lion.mp3" type="audio/mpeg">
+                    </audio>
+                </figure>
+                <figure>
+                    <figcaption> Enregistrement de l'éléphant </figcaption>
+                    <audio controls>
+                        <source src="https://www.freesoundeffects.com/mp3_466268.mp3" type="audio/mpeg">
+                    </audio>
+                </figure>
+                <figure>
+                    <figcaption> Enregistrement du buffle </figcaption>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </figure>
+                <figure>
+                    <figcaption> Enregistrement du léopard </figcaption>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </figure>
+                <figure>
+                    <figcaption> Enregistrement du rhinocéros </figcaption>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </figure>
+            </div>
         </div>
         <hr>
         <footer>

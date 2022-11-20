@@ -1,0 +1,234 @@
+
+/******************** Règles de style relatives aux titres ********************/
+
+h1 {
+    color : #5c453f ;  /* brun alentejo */
+    text-align : center ;
+}
+
+h2 {
+    color : #84503c ;  /* brun bohême */
+    text-align : center ;
+}
+
+h3 {
+    color : #c2825c ;  /* gold vendée */
+}
+
+
+/*************** Règles de style relatives au menu de navigation **************/
+
+/* Variables réutilisables pour les règles de différents éléments */
+:root {
+    --hauteur-menu : 80px ;
+    --epaisseur-bordure : 2px ;
+}
+
+/* Style des éléments li du menu de navigation */
+nav li {
+    list-style-type : none ;
+}
+
+/* Règles des liens du menu de navigation */
+nav a {
+    text-decoration : none ;
+    font-weight : bold ;
+    color : #5c453f ;  /* brun alentejo */
+}
+
+/* Mise en évidence de la page active dans le menu (changement de sa couleur) */
+nav a.actif {
+    color : #c25e4f  ; /* marron Flandre */
+}
+
+/* Règles de l'élément nav principal */
+nav.premier_niveau {
+    margin : 0px ; padding : 0px ;
+    border-top : solid var(--epaisseur-bordure) #5c453f ;
+    border-bottom : solid var(--epaisseur-bordure) #5c453f ;
+    background-color: #c3d2dd ;
+    position : sticky ; top : 0px ;
+}
+
+/* Règles de l'élément ul dans le menu principal */
+nav.premier_niveau > ul {
+    margin : 0px ; padding : 0px ; height : var(--hauteur-menu) ;
+    display : flex ; justify-content : space-evenly ; align-items : center ;
+}
+
+/* Règles de l'élément nav de deuxième niveau */
+nav.deuxieme_niveau {
+    position : relative ;
+}
+
+/* Règles de l'élément ul du nav de deuxième niveau */
+nav.deuxieme_niveau > ul {
+    margin : 0px ; padding : 0px ;
+    width : max-content ;
+    position : absolute ; top : 1em ;
+    background-color : #c3d2dd ;
+    display : flex ; flex-direction : column ; justify-content : start ; align-items : flex-start ;
+}
+
+/* Règles des items de l'ul du nav de deuxième niveau : non affichés par défaut */
+nav.deuxieme_niveau > ul > li {
+    display : none ;
+}
+
+/* Règles des items de l'ul du nav de deuxième niveau : affichés lors du passage sur le nav de deuxième niveau + autres propriétés */
+nav.deuxieme_niveau:hover > ul > li {
+    display : block ;
+    padding : 1em 0em 0em 0em ;
+    font-weight : bold ;
+    color : #84503c ;
+}
+
+/* Règles de l'élément servant de nav de troisième niveau */
+li.troisieme_niveau {
+    position : relative ;
+}
+
+/* Règles de l'ul de l'élément servant de nav de troisième niveau */
+li.troisieme_niveau > ul {
+    width : max-content ;
+    padding : 0px ;
+    position : absolute ; top : 0px ; left : 170px ;
+    display : flex ; flex-direction : column ; justify-content : start ; align-items : flex-start ;
+}
+
+/* Règles des items de l'ul du nav de troisième niveau : non affichés par défaut */
+li.troisieme_niveau li {
+    display : none ;
+}
+
+/* Règles des items de l'ul du nav de troisième niveau : affichés lors du passage sur le nav de troisième niveau + autres propriétés */
+li.troisieme_niveau:hover > ul > li {
+    display : block ;
+    padding : 1em 0em 0em 0em ;
+    color : #c2825c ;
+}
+
+
+/******************** Règles de style relatives au tableau ********************/
+
+/* Règles générales du tableau */
+#tableau {
+    border-collapse : collapse ;
+    margin : 0 auto 30px auto ;
+    text-align : center ;
+}
+
+/* Style de bordure des cases du tableau */
+#tableau th, #tableau td {
+    border : solid 1px #5c453f ; /* brun alentejo */
+}
+
+/* Règles des cases th */
+#tableau th {
+    padding : 0.5em 1em ;
+}
+
+/* Règles des cases td */
+#tableau td {
+    padding : 0.5em 0.5em ;
+}
+
+/* Couleur de fond des lignes impaires */
+#tableau tr:nth-child(odd) {
+    background-color : #c06a39 ;
+}
+
+/* Couleur de fond des lignes paires */
+#tableau tr:nth-child(even) {
+    background-color : #e38C3c ;
+}
+
+/* Couleur de fond de la première ligne */
+#tableau tr:first-child {
+    background-color : #84503c ;
+}
+
+/* Couleur de fond d'une ligne survolée */
+#tableau tr:hover {
+    background-color : #84503c ;
+}
+
+/* Taille des images */
+#tableau img {
+    width : 300px ;
+}
+
+
+/******** Règles de style relatives aux enregistrements audio et video ********/
+
+/* Règles du div conteneur des enregistrements */
+#conteneur_enreg {
+    display : flex ; flex-direction : column ; align-items : center ;
+}
+
+/* Règles des figures contenant les enregistrements */
+figure {
+    margin-bottom : 20px ;
+}
+
+/* Règles des titres associés aux figures contenant les enregistrements */
+figcaption {
+    margin-bottom : 10px ;
+}
+
+
+/******************* Règles de style relatives au formulaire ******************/
+
+/* Règles générales du formulaire */
+#formulaire {
+    width : 360px ;
+    margin : 10px auto 20px auto ;
+    display : flex ; flex-direction : column ; justify-content : flex-start ; align-items : stretch ;
+}
+
+/* Règles des div encadrant un label et son champ */
+.elt-form {
+    margin-bottom : 15px ;
+}
+
+/* Règles des label d'un div encadrant */
+.elt-form > label {
+    display : block ;
+    margin-bottom : 5px ;
+}
+
+/* Règles des input d'un div encadrant */
+.elt-form > input {
+    box-sizing : border-box ;
+    width : 100% ; height : 1.8em ;
+}
+
+/* Règles du textarea */
+.elt-form > textarea {
+    box-sizing : border-box ;
+    width : 100% ;
+}
+
+/* Règles du bouton de soumission du formulaire */
+.elt-form > #bouton {
+    height : 2.3em ;
+    margin-top : 10px ;
+    background-color : #c25e4f ;
+    border-radius : 5px ;
+}
+
+
+/*********************************** Couleurs **********************************
+
+Recherche sur internet pour des couleurs pouvant convenir au site.
+Trouvé une image de plusieurs couleurs dites d'inspiration savane.
+Pris les codes couleurs des noms fournis :
+#5c453f : Brun alentejo
+#84503c : Brun bohême
+#c2825c : Gold vendée
+#c3d2dd : Bleu Maraone
+#c25e4f : Marron Flandre
+#c06a39 : Orange opéra
+#e38C3c : Orange fugue
+
+*******************************************************************************/
