@@ -48,7 +48,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#",
                                             "onclick":"affichagePage(1)",
-                                            "content":"Accueil"
+                                            "content":"Zoo"
                                         }
                                     ]
                             },
@@ -62,7 +62,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#",
                                             "onclick":"affichagePage(2)",
-                                            "content":"Espace personnel"
+                                            "content":"Insecte"
                                         }
                                     ]
                             },
@@ -76,7 +76,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#",
                                             "onclick":"affichagePage(3)",
-                                            "content":"Animaux"
+                                            "content":"Partenariat"
                                         }
                                     ]
                             },
@@ -104,7 +104,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#",
                                             "onclick":"affichagePage(5)",
-                                            "content":"Visite virtuelle vidéo"
+                                            "content":"Pôle recherche"
                                         }
                                     ]
                             },
@@ -118,7 +118,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#",
                                             "onclick":"affichagePage(6)",
-                                            "content":"Contact"
+                                            "content":"Contact & préstation"
                                         }
                                     ]
                             }
