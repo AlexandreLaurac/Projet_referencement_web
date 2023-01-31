@@ -46,7 +46,7 @@ var menuJSON =
                                             "name":"a",
                                             "id":"lien_1",
                                             "class":"lien_menu",
-                                            "href":"#",
+                                            "href":"#Zoo",
                                             "onclick":"affichagePage(1)",
                                             "content":"Zoo"
                                         }
@@ -60,7 +60,7 @@ var menuJSON =
                                             "name":"a",
                                             "id":"lien_2",
                                             "class":"lien_menu",
-                                            "href":"#",
+                                            "href":"#Insectes",
                                             "onclick":"affichagePage(2)",
                                             "content":"Insectes"
                                         }
@@ -74,7 +74,7 @@ var menuJSON =
                                             "name":"a",
                                             "id":"lien_3",
                                             "class":"lien_menu",
-                                            "href":"#",
+                                            "href":"#Partenariat",
                                             "onclick":"affichagePage(3)",
                                             "content":"Partenariat"
                                         }
@@ -88,7 +88,7 @@ var menuJSON =
                                             "name":"a",
                                             "id":"lien_4",
                                             "class":"lien_menu",
-                                            "href":"#",
+                                            "href":"#Pôle_recherche",
                                             "onclick":"affichagePage(4)",
                                             "content":"Pôle recherche"
                                         }
@@ -102,7 +102,7 @@ var menuJSON =
                                             "name":"a",
                                             "id":"lien_5",
                                             "class":"lien_menu",
-                                            "href":"#",
+                                            "href":"#Contact_&_prestations",
                                             "onclick":"affichagePage(5)",
                                             "content":"Contact & prestations"
                                         }
@@ -143,6 +143,7 @@ function creationMenu(objet) {
     // Ajout d'une callback associé au clic sur l'élément, si elle est fournie
     if (objet.onclick !== undefined) {
         var fonctionElement = function () { return Function(objet.onclick) };  // objet.onclick est une chaine de caractère, alors que element.onclick attend une fonction
+
         element.onclick = fonctionElement();
     }
 
@@ -283,6 +284,8 @@ function affichagePage(i) { // i est le numéro de la "page" à afficher
     var id = "bloc_" + i;
     var blocAAfficher = document.getElementById(id);
     blocAAfficher.style.display = "block";
+    
+    history.pushState('','', menuObj.children[0].children[i-1].children[0].href);
 }
 
 // Affichage de la "page" d'accueil lors de l'ouverture du fichier HTML
