@@ -6,9 +6,10 @@
     <meta name="description" content="parc zoologique, Grenoble, visites, visites guidées">
     <title> Insectopolis </title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
 </head>
 
-<body>
+<body onload="AuthorizeCookie()">
     <!-- En-tête -->
     <header>
         <h1> Insectopolis </br> La cité des insectes</h1>
@@ -18,6 +19,24 @@
     <section id="div_menu_nav">
     </section>
 
+
+    <!----------------------Modal-->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <form class="modal-content" action="/action_page.php">
+            <div class="container">
+              <h1>Accepter les cookies ?</h1>
+             
+        
+              <div class="clearfix">
+                <button type="button" id="valider">Valider</button>
+                <button type="button" id="refuser">Refuser</button>
+              </div>
+            </div>
+          </form>
+      
+      </div>
 
     <!----------------------------------------- Première page : accueil ------------------------------------------->
 
@@ -278,6 +297,19 @@
 
     <!-- Script Javascript de traitement de la page -->
     <script src="script.js"></script>
+
+    <script src="modal.js"></script>
+<!-- Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QT22541LQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8QT22541LQ');
+</script>
+
+
 </body>
 
 </html>
