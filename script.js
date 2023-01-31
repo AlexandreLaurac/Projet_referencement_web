@@ -419,6 +419,50 @@ function ajoutAnimalTableauHTML(animal) {
     }
 }
 
+let listeInsectes = ["Coccinelle", "Libellule", "Sauterelle", "Scarabée", "Hétérocères"]
+let listDesc = ["Les Coccinellidae, en français coccinellidés, sont une famille d'insectes de l'ordre des coléoptères, appelés aussi coccinelles, ou encore familièrement ou régionalement bête à bon Dieu ou pernettes.",
+"Les odonates sont un ordre d'insectes à corps allongé, dotés de deux paires d'ailes membraneuses généralement transparentes, et dont les yeux composés et généralement volumineux leur permettent de chasser efficacement leurs proies.",
+"Sauterelle est un nom vernaculaire ambigu désignant en français non pas un genre, mais plusieurs familles et sous-familles d'insectes orthoptères communs presque partout dans le monde et qui se déplacent en sautant à l'aide de leurs longues pattes postérieures.",
+"Les Scarabéoïdes sont une super-famille d'insectes coléoptères polyphages. C'est la seule de l'infra-ordre des Scarabeiformia. Il existe de nombreuses espèces.",
+"Les hétérocères sont un ancien sous-ordre, aujourd'hui obsolète, de l'ordre des lépidoptères. Il se définit par opposition à l'ancien sous-ordre des rhopalocères."]
+let insectes = [];
+for(let i=1; i <= listeInsectes.length; i++){
+    insectes.push(new Animal(listeInsectes[i - 1], 'images/insecte'+i+'.jpg', listDesc[i-1], ''));
+}
+
+let div3 = document.getElementById('tableau');
+let table = document.createElement('table');
+let tbody = document.createElement('tbody');
+
+insectes.forEach(function(element, index){
+    let tr = document.createElement('tr');
+    let td_img = document.createElement('td');
+    let td_text = document.createElement('td');
+
+
+    let titre = document.createElement('h4');
+    titre.innerHTML =  element.nom;
+
+    let desc = document.createElement('p');
+    desc.innerHTML = element.description;
+
+    let img = document.createElement('img');
+    img.setAttribute('src', element.image);
+    img.setAttribute('alt', "Image d'un insecte type " + element.nom);
+
+    td_img.appendChild(img);
+    td_text.appendChild(titre);
+    td_text.appendChild(desc);
+
+    tr.appendChild(td_img);
+    tr.appendChild(td_text);
+
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
+    div3.appendChild(table);
+});
+
+
 // Fonction réalisant l'affichage d'un tableau complet à partir du tableau JS des animaux 'tableauAnimaux' et de la fonction précédente
 function affichageCompletTableauHTML() {
 
