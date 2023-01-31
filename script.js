@@ -104,7 +104,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#",
                                             "onclick":"affichagePage(5)",
-                                            "content":"Contact & prestations"
+                                            "content":"Prestations et contact"
                                         }
                                     ]
                             }
