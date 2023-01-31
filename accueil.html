@@ -15,8 +15,8 @@
     </header>
 
     <!-- Menu de navigation, rempli dynamiquement par le script.js -->
-    <div id="div_menu_nav">
-    </div>
+    <section id="div_menu_nav">
+    </section>
 
 
     <!----------------------------------------- Première page : accueil ------------------------------------------->
@@ -86,11 +86,11 @@
 
         <section>
             <article>
-                <h2> Insectes </h2>
+                <h2> Classification des insectes : découvrez les différentes espèces </h2>
 
-                <div id="tableau">
+                <section id="tableau">
                     <!-- Tableau rempli dynamiquement par le script.js -->
-                </div>
+                </section>
             </article>
 
             <!--
@@ -178,7 +178,7 @@
     </main>
 
 
-    <!-------------------------------- Cinquième page : prestations et contacts ------------------------------------>
+    <!-------------------------------- Cinquième page : contact et prestations ------------------------------------>
 
     <main class="blocs" id="bloc_5" aria-roledescription="">
 
@@ -204,30 +204,30 @@
                 <h2> Pour nous contacter, <br> remplissez le formulaire suivant </h2>
 
                 <form class="formulaire" id="form_contact" action="accueil.html" method="post">
-                    <div class="elt-form">
+                    <section class="elt-form">
                         <label for="nom"> Nom </label>
                         <input id="nom" type="text" name="nom" required>
-                    </div>
-                    <div class="elt-form">
+                    </section>
+                    <section class="elt-form">
                         <label for="prenom"> Prénom </label>
                         <input id="prenom" type="text" name="prenom">
-                    </div>
-                    <div class="elt-form">
+                    </section>
+                    <section class="elt-form">
                         <label for="email"> Email </label>
                         <input id="email" type="email" name="email" required>
-                    </div>
-                    <div class="elt-form">
+                    </section>
+                    <section class="elt-form">
                         <label for="tel"> Numéro de téléphone </label>
                         <input id="tel" type="tel" pattern="[0-9]{10}" name="tel">
-                    </div>
-                    <div class="elt-form">
+                    </section>
+                    <section class="elt-form">
                         <label for="message"> Message </label>
                         <textarea id="message" name="message" rows="8" cols="50" required></textarea>
                         <!-- Ne rien mettre entre les deux balises, sinon se retrouve dans la zone de texte (même les espaces)-->
-                    </div>
-                    <div class="elt-form">
+                    </section>
+                    <section class="elt-form">
                         <input class="bouton_form" type="submit" value="Envoyer">
-                    </div>
+                    </section>
                 </form>
             </article>
         </section>
