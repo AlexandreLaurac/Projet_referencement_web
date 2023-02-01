@@ -12,6 +12,10 @@ button {
   opacity: 0.9;
 }
 
+#refuser{
+  background-color: #f00c0c;
+}
+
 button:hover {
   opacity:1;
 }

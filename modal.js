@@ -38,6 +38,9 @@ function AuthorizeCookie(){
 
     btnValider.onclick = function(){
         let script = document.createElement('script');
+       script.async = true;
+        script.setAttribute('src', "https://www.googletagmanager.com/gtag/js?id=G-8QT22541LQ");
+      
         script.innerHTML = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-8QT22541LQ');"
         document.head.appendChild(script);
         modal.style.display = "none";
