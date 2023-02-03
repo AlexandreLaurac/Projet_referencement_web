@@ -37,15 +37,15 @@ function AuthorizeCookie(){
       }
 
     btnValider.onclick = function(){
-      //   let script = document.createElement('script');
-      //  script.async = true;
-      //   script.setAttribute('src', "https://www.googletagmanager.com/gtag/js?id=G-8QT22541LQ");
+        let script = document.createElement('script');
+       script.async = true;
+        script.setAttribute('src', "https://www.googletagmanager.com/gtag/js?id=G-7B3CC343BK");
       
-      //   let script2 = document.createElement('script');
+        let script2 = document.createElement('script');
 
-      //   script2.innerHTML = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-8QT22541LQ');"
-      //   document.head.appendChild(script);
-      //   document.head.appendChild(script2);
+        script2.innerHTML = "function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-7B3CC343BK');"
+        document.head.appendChild(script);
+        document.head.appendChild(script2);
         modal.style.display = "none";
 
     }
