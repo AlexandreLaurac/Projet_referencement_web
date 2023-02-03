@@ -62,7 +62,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#!Insectes",
                                             "onclick":"affichagePage(2)",
-                                            "content":"Insectes"
+                                            "content":"Découvrez nos Insectes"
                                         }
                                     ]
                             },
@@ -76,7 +76,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#!Partenariat",
                                             "onclick":"affichagePage(3)",
-                                            "content":"Partenariat"
+                                            "content":"Communauté de l’abeille"
                                         }
                                     ]
                             },
@@ -90,7 +90,7 @@ var menuJSON =
                                             "class":"lien_menu",
                                             "href":"#!Pôle_recherche",
                                             "onclick":"affichagePage(4)",
-                                            "content":"Pôle recherche"
+                                            "content":"Laboratoire de l’Insectarium"
                                         }
                                     ]
                             },
