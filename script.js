@@ -307,19 +307,19 @@ function Animal(nom, image, description, pays) {
 var tableauAnimaux = [];
 
 // Fonction callback associée à la requête d'obtention du fichier source.json contenant les données à afficher dans le tableau HTML
-/*function recuperationDonnees() {
-    tableauAnimaux = JSON.parse(this.responseText);
-    affichageCompletTableauHTML(); // Appel de cette fonction ici, pour attendre d'avoir les données nécessaires à l'affichage du tableau HTML
-}
+// function recuperationDonnees() {
+//     tableauAnimaux = JSON.parse(this.responseText);
+//     affichageCompletTableauHTML(); // Appel de cette fonction ici, pour attendre d'avoir les données nécessaires à l'affichage du tableau HTML
+// }
 
-// Fonction d'envoi des données suite à la modification du tableau HTML (ajout, modification ou suppression d'une ligne) pour réécriture du fichier source.json
-function ecritureDonnees(tableauAnimaux) {
-    var url = "http://localhost:8080/ecriture.php";
-    chaineJson = JSON.stringify(tableauAnimaux);
-    var data = "data=" + chaineJson;
-    ajaxPostRequest(null, url, true, data);
-}
-*/
+// // Fonction d'envoi des données suite à la modification du tableau HTML (ajout, modification ou suppression d'une ligne) pour réécriture du fichier source.json
+// function ecritureDonnees(tableauAnimaux) {
+//     var url = "http://localhost:8080/ecriture.php";
+//     chaineJson = JSON.stringify(tableauAnimaux);
+//     var data = "data=" + chaineJson;
+//     ajaxPostRequest(null, url, true, data);
+// }
+
 
 //// 2. Remplissage effectif
 
@@ -479,63 +479,63 @@ function affichageCompletTableauHTML() {
     tableauAnimaux.forEach(animal => ajoutAnimalTableauHTML(animal));
 }
 
-/*
-// Requête effective AJAX pour l'obtention des données et l'affichage du tableau HTML
-var url = "http://localhost:8080/source.json";
-ajaxPostRequest(recuperationDonnees, url, true, null);
-*/
+
+// // Requête effective AJAX pour l'obtention des données et l'affichage du tableau HTML
+// var url = "http://localhost:8080/source.json";
+// ajaxPostRequest(recuperationDonnees, url, true, null);
+
 
 //// 3. Affichage ou non du formulaire de gestion du tableau en fonction de l'utilisateur du site
-/*
-function affichageFormGestTableauHTML() {
-    if (utilisateur == 'visiteur' || utilisateur == 'user') {
-        contFormAnim.style.display = 'none';
-    }
-    else if (utilisateur == 'admin') {
-        contFormAnim.style.display = 'block';
-    }
-}
 
-affichageFormGestTableauHTML();
-*/
+// function affichageFormGestTableauHTML() {
+//     if (utilisateur == 'visiteur' || utilisateur == 'user') {
+//         contFormAnim.style.display = 'none';
+//     }
+//     else if (utilisateur == 'admin') {
+//         contFormAnim.style.display = 'block';
+//     }
+// }
+
+// affichageFormGestTableauHTML();
+
 
 //// 4. Ajout d'un animal à partir du formulaire
 
-/*
-// Fonction d'ajout d'un animal associée à l'événement "soumission du formulaire"
-function ajoutAnimalFormulaire(event) {
 
-    // Empêcher la page de se recharger
-    event.preventDefault();
+// // Fonction d'ajout d'un animal associée à l'événement "soumission du formulaire"
+// function ajoutAnimalFormulaire(event) {
 
-    // Récupération du contenu des inputs du formulaire
-    var nom = nomForm.value.trim();
-    var image = imageForm.value.trim();
-    var description = descrForm.value.trim();
-    var pays = paysForm.value.trim();
+//     // Empêcher la page de se recharger
+//     event.preventDefault();
 
-    // Création de l'animal correspondant
-    var nouvelAnimal = new Animal(nom, image, description, pays);
+//     // Récupération du contenu des inputs du formulaire
+//     var nom = nomForm.value.trim();
+//     var image = imageForm.value.trim();
+//     var description = descrForm.value.trim();
+//     var pays = paysForm.value.trim();
 
-    // Ajout de l'animal au tableau JS des animaux
-    tableauAnimaux.push(nouvelAnimal);
+//     // Création de l'animal correspondant
+//     var nouvelAnimal = new Animal(nom, image, description, pays);
 
-    // Sauvegarde du tableau mis à jour dans le fichier source.json
-    ecritureDonnees(tableauAnimaux);
+//     // Ajout de l'animal au tableau JS des animaux
+//     tableauAnimaux.push(nouvelAnimal);
 
-    // Ajout d'une ligne au tableau HTML existant avec l'objet Animal créé
-    ajoutAnimalTableauHTML(nouvelAnimal);
+//     // Sauvegarde du tableau mis à jour dans le fichier source.json
+//     ecritureDonnees(tableauAnimaux);
+
+//     // Ajout d'une ligne au tableau HTML existant avec l'objet Animal créé
+//     ajoutAnimalTableauHTML(nouvelAnimal);
 
 
-    // Suppression du contenu des input
-    nomForm.value = "";
-    imageForm.value = "";
-    descrForm.value = "";
-    paysForm.value = "";
-}
+//     // Suppression du contenu des input
+//     nomForm.value = "";
+//     imageForm.value = "";
+//     descrForm.value = "";
+//     paysForm.value = "";
+// }
 
-formAnim.onsubmit = ajoutAnimalFormulaire;
-*/
+// formAnim.onsubmit = ajoutAnimalFormulaire;
+
 
 //// 5. Modification d'un animal
 
