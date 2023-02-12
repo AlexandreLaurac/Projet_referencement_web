@@ -1,59 +1,69 @@
 /**************** Règles de style relatives générales *************/
 
 body {
-    font-size : 0.8em ;
+    font-size: 0.8em;
 }
 
 h1 {
-    color : #5c453f ;  /* brun alentejo */
-    text-align : center ;
-    font-size : 2em ;
+    color: #5c453f;
+    /* brun alentejo */
+    text-align: center;
+    font-size: 2em;
 }
 
 h2 {
-    color : #84503c ;  /* brun bohême */
-    text-align : center ;
-    font-size : 1.5em ;
+    color: #84503c;
+    /* brun bohême */
+    text-align: center;
+    font-size: 1.5em;
 }
 
 h3 {
-    color : #c2825c ;  /* gold vendée */
-    font-size : 1em ;
+    color: #c2825c;
+    /* gold vendée */
+    font-size: 1em;
 }
 
 @media (min-width: 768px) {
     body {
-        font-size : 0.9em ;
+        font-size: 0.9em;
     }
 
     h1 {
-        font-size : 2.25em ;
+        font-size: 2.25em;
     }
 
     h2 {
-        font-size : 1.75em ;
+        font-size: 1.75em;
     }
 
     h3 {
-        font-size : 1.25em ;
+        font-size: 1.25em;
     }
 }
 
 @media (min-width : 992px) {
     body {
-        font-size : 1em ;
+        font-size: 1em;
     }
 
     h1 {
-        font-size : 2.5em ;
+        font-size: 2.5em;
     }
 
     h2 {
-        font-size : 2em ;
+        font-size: 2em;
     }
+
     h3 {
-        font-size : 1.5em ;
+        font-size: 1.5em;
     }
+}
+
+
+hr {
+    margin-top: 25px;
+    margin-bottom: 25px
 }
 
 
@@ -61,103 +71,129 @@ h3 {
 
 /* Variables réutilisables pour les règles de différents éléments */
 :root {
-    --epaisseur-bordure-nav : 2px ;
-    --epaisseur-bordure-li : 1px ;
+    --epaisseur-bordure-nav: 2px;
+    --epaisseur-bordure-li: 1px;
 }
 
 /* Règles du parent du menu de navigation : rendu sticky pour que le menu le soit aussi */
 #div_menu_nav {
-    position : sticky ;
-    top : 0px ;
+    position: sticky;
+    top: 0px;
 }
 
 /* Règles de l'élément nav constituant le menu de nvaigation */
 nav {
-    margin : 0px ; padding : 0px ;
-    border-top : solid var(--epaisseur-bordure-nav) #5c453f ;
-    border-bottom : solid calc(var(--epaisseur-bordure-nav) - var(--epaisseur-bordure-li)) #5c453f ;  /* on enlève à l'épaisseur de la bordure de bas celle de la bordure de bas du dernier élément li contenu */
-    background-color: #c3d2dd ;
-    position : sticky ; top : 0px ;
+    margin: 0px;
+    padding: 0px;
+    border-top: solid var(--epaisseur-bordure-nav) #5c453f;
+    border-bottom: solid calc(var(--epaisseur-bordure-nav) - var(--epaisseur-bordure-li)) #5c453f;
+    /* on enlève à l'épaisseur de la bordure de bas celle de la bordure de bas du dernier élément li contenu */
+    background-color: #c3d2dd;
+    position: sticky;
+    top: 0px;
 }
+
 @media (min-width : 768px) {
     nav {
-        border-bottom : solid calc(var(--epaisseur-bordure-nav)) #5c453f ;  /* les li contenus n'ont plus de bordure de bas, il ne faut donc plus rien enlever à l'épaisseur de la bordure de bas du nav */
-        background-color: #c25e4f ;
+        border-bottom: solid calc(var(--epaisseur-bordure-nav)) #5c453f;
+        /* les li contenus n'ont plus de bordure de bas, il ne faut donc plus rien enlever à l'épaisseur de la bordure de bas du nav */
+        background-color: #c25e4f;
     }
 }
+
 @media (min-width : 992px) {
     nav {
-        background-color: #c3d2dd ;
+        background-color: #c3d2dd;
     }
 }
 
 /* Règles de l'élément ul du menu de navigation */
 nav ul {
-    margin : 0px ; padding : 0px ;
-    display : flex ;
-    flex-direction : column ; /* en mode mobile, axe principal vertical pour le conteneur flex */
-    justify-content : flex-start ;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    /* en mode mobile, axe principal vertical pour le conteneur flex */
+    justify-content: flex-start;
 }
+
 @media (min-width : 768px) {
-    nav ul { /* quand on sort du mode mobile, le menu devient horizontal et on lui attribue une hauteur */
-        height : 80px ;
-        flex-direction : row ;
-        justify-content : space-evenly ;
-        align-items : center ;
+    nav ul {
+        /* quand on sort du mode mobile, le menu devient horizontal et on lui attribue une hauteur */
+        height: 80px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
     }
 }
+
 @media (min-width : 992px) {
     nav ul {
-        height : 90px ;
+        height: 90px;
     }
 }
 
 /* Style des éléments li du menu de navigation */
 nav li {
-    list-style-type : none ;
-    padding : 0.5em 0em ; /* en mode mobile, espace vertical entre les différents éléments li */
-    border-bottom : solid var(--epaisseur-bordure-li) #5c453f ; /* on ajoute également une bordure entre eux */
+    list-style-type: none;
+    padding: 0.5em 0em;
+    /* en mode mobile, espace vertical entre les différents éléments li */
+    border-bottom: solid var(--epaisseur-bordure-li) #5c453f;
+    /* on ajoute également une bordure entre eux */
 }
+
 @media (min-width : 768px) {
-    nav li { /* plus besoin d'espace vertical ni de bordure quand on sort du mode mobile */
-        padding : 0em ;
-        border-bottom : solid 0px #5c453f ;
+    nav li {
+        /* plus besoin d'espace vertical ni de bordure quand on sort du mode mobile */
+        padding: 0em;
+        border-bottom: solid 0px #5c453f;
     }
 }
 
 /* Règles des liens du menu de navigation */
 nav a {
-    display : block ;
-    text-align : center ;
-    font-weight : bold ; text-decoration : none ;
-    color : #5c453f ;  /* brun alentejo */
-    font-size : 0.8em ;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c453f;
+    /* brun alentejo */
+    font-size: 0.8em;
 }
+
 @media (min-width : 768px) {
-    nav a {  /* le menu est en ligne, mais les ancres peuvent être proches : on les force à être de largeur réduite pour que le texte trop long apparaisse sur plusieurs lignes, et on adapte également la taille de caractères */
-        width : 90px ;
-        font-size : 0.9em ;
+    nav a {
+        /* le menu est en ligne, mais les ancres peuvent être proches : on les force à être de largeur réduite pour que le texte trop long apparaisse sur plusieurs lignes, et on adapte également la taille de caractères */
+        width: 90px;
+        font-size: 0.9em;
     }
 }
+
 @media (min-width : 992px) {
-    nav a { /* quand on dispose de plus de place, on ne limite plus la taille des ancres et on augmente la taille des caractères */
-        width : auto ;
-        font-size : 1em ;
+    nav a {
+        /* quand on dispose de plus de place, on ne limite plus la taille des ancres et on augmente la taille des caractères */
+        width: auto;
+        font-size: 1em;
     }
 }
 
 /* Mise en évidence de la page active dans le menu (changement de sa couleur) */
 nav a.actif {
-    color : #c25e4f  ; /* marron Flandre */
+    color: #c25e4f;
+    /* marron Flandre */
 }
+
 @media (min-width : 768px) {
     nav a.actif {
-        color : #c3d2dd  ; /* bleu Maraone */
+        color: #c3d2dd;
+        /* bleu Maraone */
     }
 }
+
 @media (min-width : 992px) {
     nav a.actif {
-        color : #c25e4f ; /* marron Flandre */
+        color: #c25e4f;
+        /* marron Flandre */
     }
 }
 
@@ -165,16 +201,16 @@ nav a.actif {
 /******* Règles de style relatives à la page d'informations personnelles ******/
 
 #infos_perso {
-    display : flex ;
-    flex-direction : column ;
-    justify-content : flex-start ;
-    align-items : center ;
-    margin-bottom : 20px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 #infos_perso ul {
-    margin : 0 ;
-    padding : 0 ;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -202,136 +238,149 @@ Pour une grande taille d'écran, on retombe sur une structure "normale" de table
 /* Règles pour un écran de petite taille */
 
 #tableau {
-    text-align : center ;
-    margin : auto ;
-    display : flex ;
-    flex-direction : column ;
-    align-items : center ;
-    margin-bottom : 30px ;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .paire {
-    display : flex ;
-    flex-direction : row ;
-    margin-bottom : 20px ;  /* pour faire des parties autonomes de tableau séparant les animaux entre eux */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    /* pour faire des parties autonomes de tableau séparant les animaux entre eux */
 }
 
-.tete, .ligne {
-    display : flex ;
-    flex-direction : column ;
+.tete,
+.ligne {
+    display: flex;
+    flex-direction: column;
 }
 
 .cellule {
-    border-top : solid 1px #5c453f ;
-    border-left : solid 1px #5c453f ;
-    height : 50px ;
-    display : flex ; flex-direction: column ; justify-content : center  ; align-items: center ;
+    border-top: solid 1px #5c453f;
+    border-left: solid 1px #5c453f;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cellule.image {
-    height : 250px ; /* les cellules génériques ont une hauteur de 50px, celles avec image de 250 */
+    height: 250px;
+    /* les cellules génériques ont une hauteur de 50px, celles avec image de 250 */
 }
 
-.tete .cellule {  /* les cellules de la colonne d'en-tête ont une largeur plus faible et le texte est en gras */
-    width : 100px ;
-    font-weight : bold ;
+.tete .cellule {
+    /* les cellules de la colonne d'en-tête ont une largeur plus faible et le texte est en gras */
+    width: 100px;
+    font-weight: bold;
 }
 
-.ligne .cellule { /* les cellules de la colonne "ligne" (celles de valeurs) ont une largeur plus grande pour héberger les images */
-    width : 300px ;
+.ligne .cellule {
+    /* les cellules de la colonne "ligne" (celles de valeurs) ont une largeur plus grande pour héberger les images */
+    width: 300px;
 }
 
 .ligne {
-    border-right : solid 1px #5c453f ;
+    border-right: solid 1px #5c453f;
 }
 
 .paire {
-    border-bottom : solid 1px #5c453f ;
+    border-bottom: solid 1px #5c453f;
 }
 
 /* Règles pour un écran de grande taille */
 @media (min-width : 992px) {
     .paire {
-        flex-direction : column ;
-        margin-bottom : 0px
+        flex-direction: column;
+        margin-bottom: 0px
     }
 
-    .tete, .ligne {
-        display : flex ;
-        flex-direction : row ;
-        justify-content : center ;
+    .tete,
+    .ligne {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .tete.deuxieme {
-        display : none ; /* en mode ligne, on n'affiche pas les en-tête lorsqu'elles sont répétées (elles sont seulement présentes en mode colonne pour que chaque animal, présenté dans un tableau autonome, ait bien son en-tête) */
+        display: none;
+        /* en mode ligne, on n'affiche pas les en-tête lorsqu'elles sont répétées (elles sont seulement présentes en mode colonne pour que chaque animal, présenté dans un tableau autonome, ait bien son en-tête) */
     }
 
-    .ligne .cellule, .tete .cellule {
-        border-top : solid 1px #5c453f ;
-        border-left : solid 1px #5c453f ;
-        border-right : 0px ;
-        border-bottom : 0px ;
-        width : 100px ;  /* les cellules sans image se voient fixer une certaine largeur ... */
+    .ligne .cellule,
+    .tete .cellule {
+        border-top: solid 1px #5c453f;
+        border-left: solid 1px #5c453f;
+        border-right: 0px;
+        border-bottom: 0px;
+        width: 100px;
+        /* les cellules sans image se voient fixer une certaine largeur ... */
     }
 
     .cellule.image {
-        width : 300px ;  /* les autres une largeur leur permettant d'héberger les images */
-        height : auto ;
+        width: 300px;
+        /* les autres une largeur leur permettant d'héberger les images */
+        height: auto;
     }
 
     .tete .cellule {
-        height : auto ;
-        padding : 5px 0px ;
+        height: auto;
+        padding: 5px 0px;
     }
 
     .ligne .cellule {
-        height : 240px ;
+        height: 240px;
     }
 
     .cellule:last-child {
-        border-right : solid 1px #5c453f ;
+        border-right: solid 1px #5c453f;
     }
 
     #tableau .paire:last-child {
-        border-bottom : solid 1px #5c453f ;
+        border-bottom: solid 1px #5c453f;
     }
 
     .ligne {
-        border-right : 0 ;
+        border-right: 0;
     }
 
     .paire {
-        border-bottom : 0 ;
+        border-bottom: 0;
     }
 }
 
 /* Taille des images */
 #tableau img {
-    width : 300px ;
+    width: 300px;
 }
 
 /* Boutons */
 #tableau button {
-    padding : 0.2em ;
-    width : 90px ;
-    background-color : #c25e4f ;
-    border-radius : 5px ;
-    border-color : #c25e4f ;
+    padding: 0.2em;
+    width: 90px;
+    background-color: #c25e4f;
+    border-radius: 5px;
+    border-color: #c25e4f;
 }
 
 /* Liens */
 #tableau a {
-    text-decoration : underline ;
-    color : black ;
+    text-decoration: underline;
+    color: black;
 }
 
 /* Zoom sur les images */
 .zoom {
-    transition : transform .2s ;
+    transition: transform .2s;
 }
 
 .zoom:hover {
-    transform : scale(1.5) ;
+    transform: scale(1.5);
 }
 
 
@@ -341,64 +390,68 @@ Pour une grande taille d'écran, on retombe sur une structure "normale" de table
 
 /* Formulaire */
 .formulaire {
-    display : flex ;
-    flex-direction : column ;
-    justify-content : flex-start ;
-    align-items : stretch ;
-    margin : 10px auto 20px auto ;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin: 10px auto 20px auto;
 }
 
 /* Règles des div encadrant un label et son champ de saisie */
 .elt-form {
-    margin-bottom : 15px ;
+    margin-bottom: 15px;
 }
 
 /* Règles des label d'un div encadrant */
-.elt-form > label {
-    display : block ;
-    margin-bottom : 5px ;
+.elt-form>label {
+    display: block;
+    margin-bottom: 5px;
 }
 
 /* Règles des input d'un div encadrant */
-.elt-form > input {
-    box-sizing : border-box ;
-    width : 100% ;
-    height : 1.6em ;
+.elt-form>input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 1.6em;
 }
+
 @media (min-width : 768px) {
-    .elt-form > input {
-        height : 1.8em ;
+    .elt-form>input {
+        height: 1.8em;
     }
 }
+
 @media (min-width : 992px) {
-    .elt-form > input {
-        height : 2em ;
+    .elt-form>input {
+        height: 2em;
     }
 }
 
 /* Règles d'un textarea dans un div encadrant */
-.elt-form > textarea {
-    box-sizing : border-box ;
-    width : 100% ;
+.elt-form>textarea {
+    box-sizing: border-box;
+    width: 100%;
 }
 
 /* Règles du bouton de soumission */
-.elt-form > .bouton_form {
-    height : 2em ;
-    margin-top: 10px ;
-    border-radius : 5px ;
-    background-color : #c25e4f ;
+.elt-form>.bouton_form {
+    height: 2em;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #c25e4f;
 }
+
 @media (min-width : 768px) {
-    .elt-form > .bouton_form {
-        height : 2.2em ;
-        background-color : #c3d2dd ;
+    .elt-form>.bouton_form {
+        height: 2.2em;
+        background-color: #c3d2dd;
     }
 }
+
 @media (min-width : 992px) {
-    .elt-form > .bouton_form {
-        height : 2.4em ;
-        background-color : #c25e4f ;
+    .elt-form>.bouton_form {
+        height: 2.4em;
+        background-color: #c25e4f;
     }
 }
 
@@ -406,70 +459,83 @@ Pour une grande taille d'écran, on retombe sur une structure "normale" de table
 
 /* Formulaire de connexion */
 #form_connexion {
-    width : 200px ;
+    width: 200px;
 }
+
 @media (min-width : 768px) {
     #form_connexion {
-        width : 240px ;
+        width: 240px;
     }
 }
+
 @media (min-width : 992px) {
     #form_connexion {
-        width : 280px ;
+        width: 280px;
     }
 }
 
 /* Titre au-dessus du formulaire des animaux */
 #titre_form_ajout_anim {
-    text-align : center ;
+    text-align: center;
 }
 
 /* Formulaire d'ajout d'animaux */
 #form_ajout_anim {
-    width : 260px ;
+    width: 260px;
 }
+
 @media (min-width : 768px) {
     #form_ajout_anim {
-        width : 360px ;
+        width: 360px;
     }
 }
+
 @media (min-width : 992px) {
     #form_ajout_anim {
-        width : 460px ;
+        width: 460px;
     }
 }
 
 /* Formulaire de contact */
 #form_contact {
-    width : 260px ;
+    width: 260px;
 }
+
 @media (min-width : 768px) {
     #form_contact {
-        width : 360px ;
-    }
-}
-@media (min-width : 992px) {
-    #form_contact {
-        width : 460px ;
+        width: 360px;
     }
 }
 
+@media (min-width : 992px) {
+    #form_contact {
+        width: 460px;
+    }
+}
+
+/* Achat d'un ticket */
+#form_achat {
+    width: 180px;
+    margin-left: 5px;
+}
 
 /******** Règles de style relatives aux enregistrements audio et video ********/
 
 /* Règles du div conteneur des enregistrements */
 .conteneur_enreg {
-    display : flex ; flex-direction : column ; align-items : center ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Règles des figures contenant les enregistrements */
 figure {
-    margin-bottom : 20px ;
+    margin-bottom: 20px;
 }
 
 /* Règles des titres associés aux figures contenant les enregistrements */
 figcaption {
-    margin-bottom : 10px ;
+    margin-bottom: 10px;
 }
 
 

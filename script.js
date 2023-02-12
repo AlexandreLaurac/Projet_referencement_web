@@ -284,8 +284,8 @@ function affichagePage(i) { // i est le numéro de la "page" à afficher
     var id = "bloc_" + i;
     var blocAAfficher = document.getElementById(id);
     blocAAfficher.style.display = "block";
-    
-    history.pushState('','', menuObj.children[0].children[i-1].children[0].href);
+
+    history.pushState('', '', menuObj.children[0].children[i - 1].children[0].href);
 }
 
 // Affichage de la "page" d'accueil lors de l'ouverture du fichier HTML
@@ -307,7 +307,7 @@ function Animal(nom, image, description, pays) {
 var tableauAnimaux = [];
 
 // Fonction callback associée à la requête d'obtention du fichier source.json contenant les données à afficher dans le tableau HTML
-function recuperationDonnees() {
+/*function recuperationDonnees() {
     tableauAnimaux = JSON.parse(this.responseText);
     affichageCompletTableauHTML(); // Appel de cette fonction ici, pour attendre d'avoir les données nécessaires à l'affichage du tableau HTML
 }
@@ -319,7 +319,7 @@ function ecritureDonnees(tableauAnimaux) {
     var data = "data=" + chaineJson;
     ajaxPostRequest(null, url, true, data);
 }
-
+*/
 
 //// 2. Remplissage effectif
 
@@ -424,27 +424,27 @@ function ajoutAnimalTableauHTML(animal) {
 
 let listeInsectes = ["Coccinelle", "Libellule", "Sauterelle", "Scarabée", "Hétérocères"]
 let listDesc = ["Les Coccinellidae, en français coccinellidés, sont une famille d'insectes de l'ordre des coléoptères, appelés aussi coccinelles, ou encore familièrement ou régionalement bête à bon Dieu ou pernettes.",
-"Les odonates sont un ordre d'insectes à corps allongé, dotés de deux paires d'ailes membraneuses généralement transparentes, et dont les yeux composés et généralement volumineux leur permettent de chasser efficacement leurs proies.",
-"Sauterelle est un nom vernaculaire ambigu désignant en français non pas un genre, mais plusieurs familles et sous-familles d'insectes orthoptères communs presque partout dans le monde et qui se déplacent en sautant à l'aide de leurs longues pattes postérieures.",
-"Les Scarabéoïdes sont une super-famille d'insectes coléoptères polyphages. C'est la seule de l'infra-ordre des Scarabeiformia. Il existe de nombreuses espèces.",
-"Les hétérocères sont un ancien sous-ordre, aujourd'hui obsolète, de l'ordre des lépidoptères. Il se définit par opposition à l'ancien sous-ordre des rhopalocères."]
+    "Les odonates sont un ordre d'insectes à corps allongé, dotés de deux paires d'ailes membraneuses généralement transparentes, et dont les yeux composés et généralement volumineux leur permettent de chasser efficacement leurs proies.",
+    "Sauterelle est un nom vernaculaire ambigu désignant en français non pas un genre, mais plusieurs familles et sous-familles d'insectes orthoptères communs presque partout dans le monde et qui se déplacent en sautant à l'aide de leurs longues pattes postérieures.",
+    "Les Scarabéoïdes sont une super-famille d'insectes coléoptères polyphages. C'est la seule de l'infra-ordre des Scarabeiformia. Il existe de nombreuses espèces.",
+    "Les hétérocères sont un ancien sous-ordre, aujourd'hui obsolète, de l'ordre des lépidoptères. Il se définit par opposition à l'ancien sous-ordre des rhopalocères."]
 let insectes = [];
-for(let i=1; i <= listeInsectes.length; i++){
-    insectes.push(new Animal(listeInsectes[i - 1], 'images/insecte'+i+'.jpg', listDesc[i-1], ''));
+for (let i = 1; i <= listeInsectes.length; i++) {
+    insectes.push(new Animal(listeInsectes[i - 1], 'images/insecte' + i + '.jpg', listDesc[i - 1], ''));
 }
 
 let div3 = document.getElementById('tableau');
 let table = document.createElement('table');
 let tbody = document.createElement('tbody');
 
-insectes.forEach(function(element, index){
+insectes.forEach(function (element, index) {
     let tr = document.createElement('tr');
     let td_img = document.createElement('td');
     let td_text = document.createElement('td');
 
 
     let titre = document.createElement('h4');
-    titre.innerHTML =  element.nom;
+    titre.innerHTML = element.nom;
 
     let desc = document.createElement('p');
     desc.innerHTML = element.description;
@@ -479,13 +479,14 @@ function affichageCompletTableauHTML() {
     tableauAnimaux.forEach(animal => ajoutAnimalTableauHTML(animal));
 }
 
+/*
 // Requête effective AJAX pour l'obtention des données et l'affichage du tableau HTML
 var url = "http://localhost:8080/source.json";
 ajaxPostRequest(recuperationDonnees, url, true, null);
-
+*/
 
 //// 3. Affichage ou non du formulaire de gestion du tableau en fonction de l'utilisateur du site
-
+/*
 function affichageFormGestTableauHTML() {
     if (utilisateur == 'visiteur' || utilisateur == 'user') {
         contFormAnim.style.display = 'none';
@@ -496,10 +497,11 @@ function affichageFormGestTableauHTML() {
 }
 
 affichageFormGestTableauHTML();
-
+*/
 
 //// 4. Ajout d'un animal à partir du formulaire
 
+/*
 // Fonction d'ajout d'un animal associée à l'événement "soumission du formulaire"
 function ajoutAnimalFormulaire(event) {
 
@@ -533,7 +535,7 @@ function ajoutAnimalFormulaire(event) {
 }
 
 formAnim.onsubmit = ajoutAnimalFormulaire;
-
+*/
 
 //// 5. Modification d'un animal
 
